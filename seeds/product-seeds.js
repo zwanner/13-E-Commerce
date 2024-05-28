@@ -2,12 +2,6 @@ const { Product } = require('../models');
 
 const productData = [
   {
-    product_name: 'Plain T-Shirt',
-    price: 14.99,
-    stock: 14,
-    category_id: 1,
-  },
-  {
     product_name: 'Running Sneakers',
     price: 90.0,
     stock: 25,
@@ -30,6 +24,12 @@ const productData = [
     price: 29.99,
     stock: 22,
     category_id: 2,
+  },
+  {
+    product_name: 'Plain T-Shirt',
+    price: 14.99,
+    stock: 14,
+    category_id: 1,
   },
 ];
 

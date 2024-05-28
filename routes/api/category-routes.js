@@ -4,7 +4,6 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 router.get('/', async (req, res) => {
   try {
-    // find all categories
     const categories = await Category.findAll({
       include: [Product],
     });
@@ -16,12 +15,11 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    // find one category by its `id` value
     const category = await Category.findByPk(req.params.id, {
       include: [Product],
     });
     if (!category) {
-      res.status(404).json({ message: 'No category found with this id' });
+      res.status(404).json({ message: 'Category not found' });
       return;
     }
     res.status(200).json(category);
@@ -32,7 +30,6 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    // create a new category
     const category = await Category.create(req.body);
     res.status(200).json(category);
   } catch (err) {
@@ -42,14 +39,13 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    // update a category by its `id` value
     const category = await Category.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
     if (!category[0]) {
-      res.status(404).json({ message: 'No category found with this id' });
+      res.status(404).json({ message: 'Category not found' });
       return;
     }
     res.status(200).json({ message: 'Category updated successfully' });
@@ -60,14 +56,13 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
   try {
-    // delete a category by its `id` value
     const category = await Category.destroy({
       where: {
         id: req.params.id,
       },
     });
     if (!category) {
-      res.status(404).json({ message: 'No category found with this id' });
+      res.status(404).json({ message: 'Category not found' });
       return;
     }
     res.status(200).json({ message: 'Category deleted successfully' });
